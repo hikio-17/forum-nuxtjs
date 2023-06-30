@@ -19,7 +19,7 @@ const api = (() => {
       localStorage.getItem('accessToken');
    }
 
-   async function register({id, name, password }) {
+   async function register({ id, name, password }) {
       const response = await fetch(`${BASE_URL}/users`, {
          method: 'POST',
          headers: {
@@ -83,12 +83,44 @@ const api = (() => {
       return user;
    }
 
+   async function getAllUsers() {
+      const response = await fetch(`${BASE_URL}/users`);
+      const responseJson = await response.json();
+
+      const { status, message } = responseJson;
+
+      if (status !== 'success') {
+         throw new Error(message);
+      }
+
+      const { data: { users } } = responseJson;
+
+      return users;
+   }
+
+   async function getAllTalks() {
+      const response = await fetch(`${BASE_URL}/talks`);
+      const responseJson = await response.json();
+
+      const { status, message } = responseJson;
+
+      if (status !== 'success') {
+         throw new Error(message);
+      }
+
+      const { data: { talks } } = responseJson;
+
+      return talks;
+   }
+
    return {
       putAccessToken,
       getAccessToken,
       getOwnProfile,
       register,
-      login
+      login,
+      getAllTalks,
+      getAllUsers,
    }
 })();
 

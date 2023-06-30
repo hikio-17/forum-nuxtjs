@@ -8,7 +8,7 @@ export const useUserStore = defineStore('users', {
    actions: {
       async receiveUsers({ id, name, password }) {
          try {
-            await api.register({ id, name, password});
+            await api.register({ id, name, password });
          } catch (e) {
             alert(e.message);
          }

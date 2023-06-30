@@ -5,6 +5,11 @@ export const useAuthUser = defineStore('authUser', {
    state: () => ({
       authUser: null,
    }),
+   getters: {
+      getUsers(state) {
+         return state.authUser;
+      }
+   },
    actions: {
       async setAuthUser(id, password) {
          try {
