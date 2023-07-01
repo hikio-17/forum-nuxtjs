@@ -3,12 +3,12 @@
    import LoginInput from '@/components/LoginInput.vue'
 
    const authUserStore = useAuthUser();
-   const { setAuthUser } = authUserStore;
+   const { userLogin } = authUserStore;
 
    const router = useRouter();
 
    const handleLogin = ({ id, password }) => {
-      setAuthUser({id, password});
+      userLogin({id, password});
       router.push('/');
    }
 

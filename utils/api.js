@@ -113,6 +113,34 @@ const api = (() => {
       return talks;
    }
 
+   // async function createTalk({ talk, replyTo = '' }) {
+   //    const response = await fetch(`${BASE_URL}/talks`, {
+   //       method: 'POST',
+   //       headers: {
+   //          'Content-Type': 'application/json',
+   //          Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+   //       },
+   //       body: JSON.stringify({
+   //          talk,
+   //          replyTo,
+   //       })
+   //    });
+
+   //    const responseJson = await response.json();
+
+   //    const { status, message } = responseJson;
+
+   //    if (status !== 'success') {
+   //       throw new Error(message);
+   //    }
+
+   //    const { data: { talk } } = responseJson;
+
+   //    return talk;
+   // }
+
+   
+
    return {
       putAccessToken,
       getAccessToken,

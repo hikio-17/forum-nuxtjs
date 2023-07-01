@@ -1,20 +1,45 @@
-<script setup>
-import { onMounted, ref } from 'vue'; 
+<script>
+import { onMounted } from 'vue';
+import { storeToRefs } from 'pinia';
+import TalksList from '@/components/TalksList.vue';
+import TalkInput from '@/components/TalkInput.vue';
 
-const talksStore = useTalksStore();
-const talks = ref([]);
+export default {
+    setup() {
+        const talksStore = useTalksStore();
+        const userStore = useUserStore();
+        const preloadStore = useIsPreload();
+        const { talks } = storeToRefs(talksStore);
+        const { users } = storeToRefs(userStore);
 
-onMounted(() => {
-   talksStore.receiveTalks();
-   talks.value = talksStore.talks;
+        onMounted(() => {
+            talksStore.receiveTalks();
+            userStore.getUsers();
+            preloadStore.preloadProcess();
+        });
 
-});
-   
+        function talkList() {
+            return talks.value.map((talk) => ({
+                ...talk,
+                user: users.value.find((user) => user.id == talk.user)
+            }));
+        }
+
+        return {
+            talkList
+        }
+    }
+}
+
+
+
 </script>
 
 <template>
-   <section class="home-page">
-      <h1>Home Page</h1>
-      <p>{{  talks }}</p>
-   </section>
+    <div>
+        <section class="home-page">
+            <TalkInput />
+            <TalksList :talks="talkList()" />
+        </section>
+    </div>
 </template>

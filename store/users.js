@@ -12,6 +12,14 @@ export const useUserStore = defineStore('users', {
          } catch (e) {
             alert(e.message);
          }
+      },
+
+      async getUsers() {
+         try {
+            this.users = await api.getAllUsers();
+         } catch (e) {
+            alert(e.message)
+         }
       }
    }
 })

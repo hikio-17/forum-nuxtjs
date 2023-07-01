@@ -9,7 +9,6 @@
    const emit = defineEmits(['on-login'])
 
    const onLogin = () => {
-      console.log(state);
       emit('on-login', { ...state });
    }
 </script>

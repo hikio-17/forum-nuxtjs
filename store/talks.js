@@ -5,6 +5,7 @@ export const useTalksStore = defineStore('talks', {
    state: () => ({
       talks: [],
    }),
+
    actions: {
       async receiveTalks() {
          try {
@@ -12,6 +13,6 @@ export const useTalksStore = defineStore('talks', {
          } catch (e) {
             alert(e.message)
          }
-      }
+      },
    }
 })

@@ -5,13 +5,8 @@ export const useAuthUser = defineStore('authUser', {
    state: () => ({
       authUser: null,
    }),
-   getters: {
-      getUsers(state) {
-         return state.authUser;
-      }
-   },
    actions: {
-      async setAuthUser(id, password) {
+      async userLogin(id, password) {
          try {
             const token = await api.login(id, password);
             // Set token to local storage
@@ -22,6 +17,10 @@ export const useAuthUser = defineStore('authUser', {
          } catch (e) {
             alert(e.message);
          }
+      },
+
+      setAuthUser(authUser) {
+         this.authUser  = authUser;
       },
 
       unsetAuthUser() {
