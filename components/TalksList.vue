@@ -1,5 +1,4 @@
 <script setup>
-   import { defineProps } from 'vue';
    import TalkItem from '@/components/TalkItem.vue';
 
    const props = defineProps(['talks']);
