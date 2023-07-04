@@ -1,5 +1,6 @@
 <script>
    import { storeToRefs } from 'pinia';
+   import { useAuthUser } from '@/store/authUser';
    import Navigation from '@/components/Navigation.vue';
 
    export default {

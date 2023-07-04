@@ -1,10 +1,12 @@
 <script setup>
-   import { ref } from 'vue';
+   import { ref, defineEmits } from 'vue';
 
-   const text = ref('')
- 
+   const text = ref('');
+   const emit = defineEmits(['add-talk']);
+
    function addTalk() {
-      console.log(text.value)
+      emit('add-talk', text.value);
+      text.value = '';
    }    
        
 </script>

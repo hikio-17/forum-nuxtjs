@@ -14,5 +14,15 @@ export const useTalksStore = defineStore('talks', {
             alert(e.message)
          }
       },
+
+      async addTalk({ text, replyTo = '' }) {
+         try {
+            const talk = await api.createTalk({ text, replyTo });
+
+            this.talks = [talk, ...this.talks]
+         } catch (e) {
+            alert(e.message)
+         }
+      }
    }
 })

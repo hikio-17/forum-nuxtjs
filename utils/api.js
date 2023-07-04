@@ -113,35 +113,49 @@ const api = (() => {
       return talks;
    }
 
-   // async function createTalk({ talk, replyTo = '' }) {
-   //    const response = await fetch(`${BASE_URL}/talks`, {
-   //       method: 'POST',
-   //       headers: {
-   //          'Content-Type': 'application/json',
-   //          Authorization: `Bearer ${localStorage.getItem('accessToken')}`
-   //       },
-   //       body: JSON.stringify({
-   //          talk,
-   //          replyTo,
-   //       })
-   //    });
+   async function createTalk({ text, replyTo = '' }) {
+      const response = await _fetchWithAuth(`${BASE_URL}/talks`, {
+         method: 'POST',
+         headers: {
+            'Content-Type': 'application/json',
+         },
+         body: JSON.stringify({
+            text,
+            replyTo,
+         })
+      });
 
-   //    const responseJson = await response.json();
+      const responseJson = await response.json();
+      const { status, message } = responseJson;
 
-   //    const { status, message } = responseJson;
+      if (status !== 'success') {
+         throw new Error(message);
+      }
 
-   //    if (status !== 'success') {
-   //       throw new Error(message);
-   //    }
+      const { data: { talk } } = responseJson;
+      return talk;
+   }
 
-   //    const { data: { talk } } = responseJson;
+   async function getTalkById(id) {
+      const response = await fetch(`${BASE_URL}/talks/${id}`);
+      const responseJson = await response.json();
 
-   //    return talk;
-   // }
+      const { status, message } = responseJson;
+
+      if (status !== 'success') {
+         throw new Error(message);
+      }
+
+      const { data: { talkDetail } } = responseJson;
+
+      return talkDetail;
+   }
 
    
 
    return {
+      createTalk,
+      getTalkById,
       putAccessToken,
       getAccessToken,
       getOwnProfile,
