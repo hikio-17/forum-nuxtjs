@@ -1,8 +1,12 @@
 <script setup>
+import { ref } from 'vue';
    import { postedAt } from '@/utils';
+
 
    const props = defineProps(['talk'])
    
+   const isTalkLiked = ref(true);
+
    function onTalkClick(talkId) {
       navigateTo('/detail/' + talkId)
    }
@@ -30,6 +34,17 @@
                {{ talk.text }}
             </p>
          </article>
+         <div class="talk-item__likes">
+            <p>
+               <button
+                  type="button"
+                  aria-label="like"
+               >
+               <font-awesome-icon v-if="isTalkLiked" icon="fa-brands fa-twitter-square" />
+               </button>
+               {{ talk.likes.length }}
+            </p>
+         </div>
       </div>
    </div>
 </template>
