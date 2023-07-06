@@ -151,6 +151,26 @@ const api = (() => {
       return talkDetail;
    }
 
+   async function toggleLikeTalk(id) {
+      const response = await _fetchWithAuth(`${BASE_URL}/talks/likes`, {
+         method: 'POST',
+         headers: {
+            'Content-Type': 'application/json'
+         },
+         body: JSON.stringify({
+            talkId: id,
+         }),
+      });
+
+      const responseJson = await response.json();
+
+      const { status, message } = responseJson;
+
+      if (status !== 'success') {
+         throw new Error(message);
+      }
+   }
+
    
 
    return {
@@ -161,6 +181,7 @@ const api = (() => {
       getOwnProfile,
       register,
       login,
+      toggleLikeTalk,
       getAllTalks,
       getAllUsers,
    }
