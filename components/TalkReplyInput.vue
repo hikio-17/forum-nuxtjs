@@ -21,7 +21,7 @@
       />
       <p class="talk-reply-input__char-left"><strong>{{  text.length }}</strong>/320</p>
       <button type="submit" @click="onReplyTalk">
-         Reply
+         Reply Talk
       </button>
    </div>
 </template>
