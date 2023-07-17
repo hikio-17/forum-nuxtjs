@@ -17,7 +17,7 @@
 <template>
    <section class="register-page">
       <header class="register-page__hero">
-         <h1>Icon</h1>
+         <h1>Change Icon</h1>
       </header>
       <article class="register-page__main">
          <h2>Create your account</h2>
