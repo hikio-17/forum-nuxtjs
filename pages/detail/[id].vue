@@ -1,5 +1,5 @@
 <script setup>
-   import { onMounted, computed } from 'vue';
+   import { onMounted } from 'vue';
    import { storeToRefs } from 'pinia';
    import { useTalkDetail } from '@/store/talkDetail';
    import { useAuthUser } from '@/store/authUser';
